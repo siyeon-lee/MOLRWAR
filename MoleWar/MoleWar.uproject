@@ -1,0 +1,13 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "{FD4484E5-4989-81E3-634C-139C509581E0}",
+	"Category": "",
+	"Description": "",
+	"Modules": [
+		{
+			"Name": "MoleWar",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}
