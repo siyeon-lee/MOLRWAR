@@ -4,6 +4,7 @@
 #include "MoleWarCharacter.h"
 #include "UObject/ConstructorHelpers.h"
 
+#include "MoleWar.h"
 AMoleWarGameMode::AMoleWarGameMode()
 {
 	// set default pawn class to our Blueprinted character
