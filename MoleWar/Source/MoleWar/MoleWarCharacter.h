@@ -30,7 +30,7 @@ public:
 	float BaseLookUpRate;
 
 protected:
-
+#pragma region INPUT
 	/** Resets HMD orientation in VR. */
 	void OnResetVR();
 
@@ -58,6 +58,10 @@ protected:
 	/** Handler for when a touch input stops. */
 	void TouchStopped(ETouchIndex::Type FingerIndex, FVector Location);
 
+	void StartToShot();
+	void StopToShot();
+
+#pragma endregion
 protected:
 	// APawn interface
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;

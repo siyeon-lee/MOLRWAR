@@ -1,6 +1,7 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "MoleWarCharacter.h"
+
 #include "HeadMountedDisplayFunctionLibrary.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
@@ -9,6 +10,7 @@
 #include "GameFramework/Controller.h"
 #include "GameFramework/SpringArmComponent.h"
 
+#include "MoleWar.h"
 //////////////////////////////////////////////////////////////////////////
 // AMoleWarCharacter
 
@@ -54,8 +56,8 @@ void AMoleWarCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerI
 {
 	// Set up gameplay key bindings
 	check(PlayerInputComponent);
-	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
-	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
+	PlayerInputComponent->BindAction("Shot", IE_Pressed, this, &AMoleWarCharacter::StartToShot);
+	PlayerInputComponent->BindAction("Shot", IE_Released, this, &AMoleWarCharacter::StopToShot);
 
 	PlayerInputComponent->BindAxis("MoveForward", this, &AMoleWarCharacter::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &AMoleWarCharacter::MoveRight);
@@ -90,12 +92,22 @@ void AMoleWarCharacter::OnResetVR()
 
 void AMoleWarCharacter::TouchStarted(ETouchIndex::Type FingerIndex, FVector Location)
 {
-		Jump();
+	Jump();
 }
 
 void AMoleWarCharacter::TouchStopped(ETouchIndex::Type FingerIndex, FVector Location)
 {
-		StopJumping();
+	StopJumping();
+}
+
+void AMoleWarCharacter::StartToShot()
+{
+	ML_LOG(Log, TEXT("Started to Shot"));
+}
+
+void AMoleWarCharacter::StopToShot()
+{
+	ML_LOG(Log, TEXT("Stop to Shot"));
 }
 
 void AMoleWarCharacter::TurnAtRate(float Rate)
