@@ -11,6 +11,10 @@
 			"AdditionalDependencies": [
 				"Engine"
 			]
+		},
+		{
+			"Name": "MoleWar_EditorOnly",
+			"Type": "Runtime"
 		}
 	]
 }

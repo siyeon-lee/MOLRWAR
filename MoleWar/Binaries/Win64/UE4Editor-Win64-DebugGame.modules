@@ -2,6 +2,7 @@
 	"BuildId": "40b7305f-eb3c-4109-be0c-8d91dfc73d57",
 	"Modules": 
 	{
-		"MoleWar": "UE4Editor-MoleWar-Win64-DebugGame.dll"
+		"MoleWar": "UE4Editor-MoleWar-Win64-DebugGame.dll",
+		"MoleWar_EditorOnly": "UE4Editor-MoleWar_EditorOnly-Win64-DebugGame.dll"
 	}
 }
