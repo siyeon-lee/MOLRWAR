@@ -23,6 +23,7 @@ public class MoleWar : ModuleRules
             "MoleWar_EditorOnly",
             "MovieSceneTracks",
             "MovieScene",
+            "UMG",
         });
         PrivateDependencyModuleNames.AddRange(new string[]
         {

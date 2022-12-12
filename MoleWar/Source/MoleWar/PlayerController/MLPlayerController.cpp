@@ -2,8 +2,9 @@
 
 
 #include "MLPlayerController.h"
-#include "MoleWar/MoleWar.h"
 
+#include "MoleWar/MoleWar.h"
+#include "Character/MLGameCharacter.h"
 // > Protected ------
 void AMLPlayerController::BeginPlay()
 {
@@ -33,6 +34,16 @@ void AMLPlayerController::SetupInputComponent()
 	InputComponent->BindTouch(IE_Pressed, this, &AMLPlayerController::TouchStarted);
 	InputComponent->BindTouch(IE_Released, this, &AMLPlayerController::TouchStopped);
 
+}
+bool AMLPlayerController::DestroyNetworkActorHandled()
+{
+	//데디케이트 상황에서 다른 클라이언트가 넷컬링 된 상태에서 게임을 종료했을 시, 플로터 해제를 위해 넣은 코드
+	//AMLGameCharacter* CurrentPawn = GetPawn<AMLGameCharacter>();
+	//if (CurrentPawn != nullptr && CurrentPawn->IsValidLowLevel() == true)
+	//{
+	//	CurrentPawn->ReleaseCharacter();
+	//}
+	return Super::DestroyNetworkActorHandled();
 }
 // < Protected -----
 

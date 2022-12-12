@@ -17,6 +17,7 @@ protected:
 	virtual void BeginPlay() override;
 	virtual void SetupInputComponent() override;
 
+	virtual bool DestroyNetworkActorHandled() override;
 private:
 #pragma region INPUT ACTIONS
 	void MoveForward(float Value);

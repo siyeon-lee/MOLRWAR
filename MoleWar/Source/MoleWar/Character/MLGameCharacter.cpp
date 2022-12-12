@@ -8,9 +8,12 @@
 #include "Components/InputComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/Controller.h"
+#include "GameFramework/PlayerController.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "Blueprint/UserWidget.h"
 
 #include "MoleWar/MoleWar.h"
+#include "HUD/MLHUD.h"
 //////////////////////////////////////////////////////////////////////////
 // AMLGameCharacter
 
@@ -47,4 +50,66 @@ AMLGameCharacter::AMLGameCharacter()
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++)
+}
+
+void AMLGameCharacter::BeginPlay()
+{
+	Super::BeginPlay();
+	
+	APlayerController* PlayerController = UGameplayStatics::GetPlayerController(this, 0);
+	if (PlayerController == nullptr || PlayerController->IsValidLowLevel() == false)
+	{
+		ML_LOG(Error, TEXT("[APlayerController] PlayerController is null"));
+		return;
+	}
+
+	AMLHUD* Hud = PlayerController->GetHUD<AMLHUD>();
+	if (Hud == nullptr || Hud->IsValidLowLevel() == false)
+	{
+		ML_LOG(Error, TEXT("[AMLHUD] Hud is null"));
+		return;
+	}
+
+	Hud->RegisterFloaterTarget(this);
+}
+
+void AMLGameCharacter::Destroyed()
+{
+	ReleaseCharacter();
+	Super::Destroyed();
+}
+
+void AMLGameCharacter::ReleaseCharacter()
+{
+	APlayerController* PlayerController = UGameplayStatics::GetPlayerController(this, 0);
+	if (PlayerController == nullptr || PlayerController->IsValidLowLevel() == false)
+	{
+		ML_LOG(Error, TEXT("[APlayerController] PlayerController is null"));
+		return;
+	}
+
+	AMLHUD* Hud = PlayerController->GetHUD<AMLHUD>();
+	if (Hud == nullptr || Hud->IsValidLowLevel() == false)
+	{
+		ML_LOG(Error, TEXT("[AMLHUD] Hud is null"));
+		return;
+	}
+
+	Hud->UnRegisterFloaterTarget(this);
+
+	if (WidgetFloaterBaseForm != nullptr && WidgetFloaterBaseForm->IsValidLowLevel() == true)
+	{
+		WidgetFloaterBaseForm->ConditionalBeginDestroy();
+	}
+
+}
+
+void AMLGameCharacter::SetWidgetFloater(UUserWidget* InWidgetFloater)
+{
+	WidgetFloaterBaseForm = InWidgetFloater;
+}
+
+UUserWidget* AMLGameCharacter::GetFloaterWidget()
+{
+	return WidgetFloaterBaseForm;
 }

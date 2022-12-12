@@ -8,6 +8,7 @@
 
 class USpringArmComponent;
 class UCameraComponent;
+class UUserWidget;
 
 UCLASS(config = Game)
 class AMLGameCharacter : public ACharacter
@@ -36,14 +37,20 @@ public:
 		UCameraComponent* FollowCamera;
 #pragma endregion //THIRDPERSON_ENGINE_BASE
 
-#pragma region FLOATER_SETTING_VALUE
 public:
-	UPROPERTY(BlueprintReadWrite)
-	bool bDoesVisibleNameWidget;
-	UPROPERTY(BlueprintReadWrite)
-	FVector2D WidgetOffset;
+	virtual void BeginPlay() override;
+	virtual void Destroyed() override;
+
+	void ReleaseCharacter();
+	void SetWidgetFloater(UUserWidget* InWidgetFloater);
+	UUserWidget* GetFloaterWidget();
+#pragma region FLOATER_SETTING_VALUE
+private:
+	UPROPERTY(Transient)
+		UUserWidget* WidgetFloaterBaseForm;
 #pragma endregion //FLOATER_SETTING_VALUE
 
 
 };
+
 
