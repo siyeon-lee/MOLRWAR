@@ -6,6 +6,31 @@ public class MoleWar_EditorOnly : ModuleRules
 {
 	public MoleWar_EditorOnly(ReadOnlyTargetRules Target) : base(Target)
 	{
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "HeadMountedDisplay" });
-	}
+        PrivateIncludePaths.AddRange(new string[]
+              {
+                "MoleWar_EditorOnly",
+              });
+
+        PublicDependencyModuleNames.AddRange(new string[] 
+        {
+            "Core",
+            "CoreUObject",
+            "Engine",
+            "InputCore",
+            "HeadMountedDisplay",
+            "MovieSceneTracks",
+            "MovieScene",
+
+        });
+
+        PrivateDependencyModuleNames.AddRange(new string[] 
+        {
+            "UnrealEd",
+            "Slate",
+            "SlateCore",
+            "Sequencer",
+            "MovieSceneTools"
+        });
+
+    }
 }

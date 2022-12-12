@@ -8,6 +8,29 @@ public class MoleWar : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "HeadMountedDisplay", "MoleWar_EditorOnly" });
-	}
+        PrivateIncludePaths.AddRange(new string[]
+           {
+                "MoleWar/",
+           });
+
+        PublicDependencyModuleNames.AddRange(new string[] 
+        {
+            "Core",
+            "CoreUObject",
+            "Engine",
+            "InputCore",
+            "HeadMountedDisplay",
+            "MoleWar_EditorOnly",
+            "MovieSceneTracks",
+            "MovieScene",
+        });
+        PrivateDependencyModuleNames.AddRange(new string[]
+        {
+            "UnrealEd",
+            "Slate",
+            "SlateCore",
+            "Sequencer",
+            "MovieSceneTools"
+        });
+    }
 }
