@@ -29,6 +29,7 @@ private:
 	void StartToShot();
 	void StopToShot();
 #pragma endregion
+	
 
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
